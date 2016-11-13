@@ -1,0 +1,42 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">{{ PageTitle }}</div>
+   	<div class='panel-body'>
+   		<div clss='row'>
+   			<div class='col-md-2'>
+   				Filter By
+   			</div>
+   			<div class='col-md-4'>
+   				<input type="text" [(ngModel)]='listFilter' />
+   			</div>
+   		</div>
+   		<div class='row'>
+   			<div class='col-md-6'>
+   				Filtered By : {{listFilter}}
+   			</div>
+   		</div>
+   	</div>
+   	<div class="table-responsive">
+		<table class="table" *ngIf='Products.length'>
+			<thead>
+				<tr>
+					<th>Product ID</th>
+					<th>Product Name</th>
+					<th>Version</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor='let product of Products | productFilter:listFilter'>
+					<td>{{ product.ProductId }}</td>
+					<td>{{ product.ProductName | uppercase }}</td>
+					<td>{{ product.Version }}</td>
+					<td>{{ product.Price | currency:'INR':true:'1.2-2' }}</td>
+					<td>
+						<ap-star [rating]='product.Rating'></ap-star>
+					</td>
+				</tr> 
+			</tbody>
+		</table>
+	</div>	
+
+</div>
